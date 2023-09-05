@@ -15,38 +15,43 @@ class EmployeeController extends Controller
 
     public function emplist()
     {
-        return view('admin.employees');
+        //$employees= Employee::all();
+        //$employees = Employee::orderBy('id','desc');
+        $employees = Employee::orderBy('id', 'desc')->get();
+        return view('admin.employees', compact('employees'));
     }
 
     public function store(Request $request)
     {
-        // Validate the form data
+        try {
+            $data = $request->all();
 
-        $validatedData = $request->validate([
-            'fname' => 'required|string|max:255',
-            'mname' => 'nullable|string|max:255',
-            'lname' => 'required|string|max:255',
-            'adrs1' => 'nullable|string|max:255',
-            'adrs2' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'zip' => 'nullable|string|max:20',
-            'gender' => 'required|string|max:255',
-            'usertype' => 'required|string|max:255',
-            'password' => 'required|string|min:6', // Adjust the minimum length as needed
-        ]);
+            // Attempt to insert data into the 'employees' table
+            $employee = Employee::create([
+                'fname' => $data['fname'],
+                'mname' => $data['mname'],
+                'lname' => $data['lname'],
+                'adrs1' => $data['adrs1'],
+                'adrs2' => $data['adrs2'],
+                'mobile' => $data['mobile'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'gender' => $data['gender'],
+                'usertype' => $data['usertype'],
+                'password' => bcrypt($data['password']), // Hash the password
+            ]);
 
-        // Create a new Employee instance and assign validated data
-        $employee = new Employee($validatedData);
-
-        // Hash the password before saving it to the database
-        $employee->password = Hash::make($validatedData['password']);
-
-        // Save the employee data to the database
-        $employee->save();
-
-        // Redirect or return a response
-        return redirect('admin/employees');
-
+            // Check if insertion was successful
+            if ($employee) {
+                return redirect()->route('employee.emplist')->with('success', 'Employee created successfully');
+            } else {
+                return back()->with('error', 'Failed to create employee');
+            }
+        } catch (\Exception $e) {
+            \Log::error($e); // Log the error
+            return back()->with('error', 'An error occurred while creating the employee.');
+        }
     }
+
 }

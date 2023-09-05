@@ -1,7 +1,9 @@
 @extends('admin/layout')
 @section('content')
     <div class="jumbotron">
-        <form method="post" action="{{ route('employee.store') }}">
+        <h4 class="text-center">Registration Form</h4>
+        <hr style="width: 50%"><br><br>
+        <form method="post"  action="{{ route('employee.store') }}">
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-4">

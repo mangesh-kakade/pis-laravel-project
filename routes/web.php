@@ -28,11 +28,15 @@ Route::post('/admin/auth', [AdminController::class,'auth'])->name('admin.auth');
 Route::group(['middleware'=>'admin_auth'], function(){
     Route::get('admin/dashboard', [AdminController::class,'dashboard']);
     Route::get('admin/employee-reg', [EmployeeController::class,'index']);
-    Route::get('admin/employees', [EmployeeController::class,'emplist']);
-    Route::get('admin/register-employee', [EmployeeController::class,'index']);
-    // Route::post('/employees', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('admin/employees', [EmployeeController::class,'emplist'])->name('employee.emplist');
 
-    Route::post('employee/store', [EmployeeController::class,'store'])->name('employee.store');
+
+
+
+
+    Route::get('admin/register-employee', [EmployeeController::class,'index']);
+    Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+
 
 
     Route::get('admin/logout', function () {
