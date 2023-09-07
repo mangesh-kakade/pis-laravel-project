@@ -2,15 +2,18 @@
 @section('content')
     <div class="jumbotron">
         <h4 class="text-center">Registration Form</h4>
-        <hr style="width: 50%"><br><br>
+        <hr><br><br>
         <form method="post"  action="{{ route('employee.store') }}">
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputFirstName">First Name:</label>
+                    @error('fname')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group">
                         <input type="text" name="fname" class="form-control" id="inputFirstName"
-                            placeholder="Enter First Name">
+                            placeholder="Enter First Name" value="{{ old('fname') }}">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-user"></i>
@@ -20,9 +23,12 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputMiddleName">Middle Name:</label>
+                    @error('mname')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
                     <div class="input-group">
                         <input type="text" name="mname" class="form-control" id="inputMiddleName"
-                            placeholder="Enter Middle Name">
+                            placeholder="Enter Middle Name" value="{{ old('m name') }}">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-user"></i>
@@ -32,9 +38,12 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputLastName">Last Name:</label>
+                    @error('lname')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group">
                         <input type="text" name="lname" class="form-control" id="inputLastName"
-                            placeholder="Enter Last Name">
+                            placeholder="Enter Last Name" value="{{ old('lname') }}">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-user"></i>
@@ -47,25 +56,40 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Address Line 1:</label>
-                    <input type="text" name="adrs1" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    @error('adrs1')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <input type="text" name="adrs1" class="form-control" id="inputAddress" value="{{ old('adrs1') }}" placeholder="1234 Main St">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputAddress2">Address Line 2:</label>
-                    <input type="text" name="adrs2" class="form-control" id="inputAddress2"
+                    @error('adrs2')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <input type="text" name="adrs2" value="{{ old('adrs2') }}" class="form-control" id="inputAddress2"
                         placeholder="Apartment, studio, or floor">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputAddress2">Mobile:</label>
-                    <input type="text" name="mobile" class="form-control" id="inputAddress2" placeholder="Enter Mobile">
+                    @error('mobile')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" id="inputAddress2" placeholder="Enter Mobile">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">City:</label>
+                    @error('city')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <input type="text" name="city" class="form-control" id="inputCity">
                 </div>
                 <div class="form-group col-md-4">
+                    @error('state')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="inputState">State:</label>
                     <select id="inputState" name="state" class="form-control">
                         <option value="">Select State</option>
@@ -86,13 +110,20 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip:</label>
-                    <input type="text" name="zip" class="form-control" id="inputZip">
+                    @error('zip')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <input type="text" name="zip" value="{{ old('zip') }}" class="form-control" id="inputZip">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="gender">Select Gender:</label>
-                    <select name="gender" id="gender" title="Gender" required="" class="form-control" required>
+                    @error('gender')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <select name="gender" id="gender" title="Gender"  class="form-control" >
                         <option value="">-- Select Gender --</option>
                         <option value="M"> Male</option>
                         <option value="F"> Female</option>
@@ -101,7 +132,10 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="gender">User Type:</label>
-                    <select name="usertype" id="gender" title="Gender" required="" class="form-control" required>
+                    @error('usertype')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <select name="usertype" id="gender" title="Gender" class="form-control">
                         <option value="">-- Select User --</option>
                         <option value="1"> Admin</option>
                         <option value="2"> Super-Admin</option>
@@ -110,6 +144,9 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputPassword4">Password:</label>
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group">
                         <input type="password" name="password" class="form-control" id="password"
                             placeholder="Enter Password">
@@ -123,6 +160,9 @@
 
                 <div class="form-group col-md-3">
                     <label for="inputPassword4">Confirm Password:</label>
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group">
                         <input type="password" name="cpassword" class="form-control" id="cpassword"
                             placeholder="Confirm Password">

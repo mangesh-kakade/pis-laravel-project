@@ -32,7 +32,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('admin/dashboard') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-user-plus" style="font-size:18px"></i>
                 </div>
@@ -66,8 +67,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="register-employee">Add Employee</a>
-                        <a class="collapse-item" href="employees">View Employees</a>
+                        <a class="collapse-item" href="{{ url('admin/register-employee') }}">Add Employee</a>
+                        <a class="collapse-item" href="{{ url('admin/employees') }}">View Employees</a>
                     </div>
                 </div>
             </li>
@@ -83,8 +84,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item" href="add-department.php">Add Department</a>
-                        <a class="collapse-item" href="view-departments.php">View Department</a>
+                        <a class="collapse-item" href="">Add Department</a>
+                        <a class="collapse-item" href="">View Department</a>
                         <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> -->
                     </div>
@@ -100,10 +101,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item" href="leave-requests.php">Leave Requests</a>
-                        <a class="collapse-item" href="admin-rejected-leaves.php">Rejected</a>
-                        <a class="collapse-item" href="admin-approved-leaves.php">Approved</a>
-
+                        <a class="collapse-item" href="{{ url('admin/leaves')}}">Leave Requests</a>
+                        <a class="collapse-item" href="{{ url('admin/rejected-leaves')}}">Rejected</a>
+                        <a class="collapse-item" href="{{ url('admin/approved-leaves')}}">Approved</a>
                     </div>
                 </div>
             </li>

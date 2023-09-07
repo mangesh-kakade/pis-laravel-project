@@ -67,6 +67,9 @@
                         <form method="post" action="{{ route('admin.auth') }}">
                             @csrf
                             <div class="row" id="email_area">
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="input-group col-12 mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="email_addon">Username <span class="text-danger">*</span> </span>
@@ -77,6 +80,9 @@
                             </div>
 
                             <div class="row" id="email_area">
+                                @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="input-group col-12 mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="email_addon">Password  <span class="text-danger">*</span></span>

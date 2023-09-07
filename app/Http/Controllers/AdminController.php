@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -30,6 +32,31 @@ class AdminController extends Controller
 
     public function auth(Request $request)
     {
+
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+
+        // Validation messages
+        $messages = [
+            'email.required' => '* Email is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'password.required' => '* Password is required.',
+        ];
+
+        // Validate the input data
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // Check if the validation fails
+        if ($validator->fails()) {
+            return redirect('admin')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
         //return $request->post();
         $email = $request->post('email');
         $password = $request->post('password');
@@ -54,6 +81,12 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        return view('admin.dashboard');
+
+        // Fetch user types and their counts
+        $userTypes = DB::table('employee_reg')->select('usertype', DB::raw('count(*) as user_count'))->groupBy('usertype')->get();
+
+
+        return view('admin.dashboard', compact('userTypes'));
+
     }
 }
