@@ -72,10 +72,10 @@
                                 @enderror
                                 <div class="input-group col-12 mb-4">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="email_addon">Username <span class="text-danger">*</span> </span>
+                                        <span class="input-group-text" id="email_addon">Mobile No <span class="text-danger">*</span> </span>
                                     </div>
-                                    <input type="email" id="username" class="form-control email bg-white" name="email"
-                                    placeholder="Enter Your Username">
+                                    <input type="text" id="username" class="form-control email bg-white" name="email"
+                                    placeholder="Enter Your Mobile">
                                 </div>
                             </div>
 

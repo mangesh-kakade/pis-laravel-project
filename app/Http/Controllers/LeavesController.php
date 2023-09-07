@@ -10,4 +10,13 @@ class LeavesController extends Controller
     {
         return view('admin.leaves');
     }
+    public function rejected()
+    {
+        return view('admin.rejected-leaves');
+    }
+
+    public function approved()
+    {
+        return view('admin.approved-leaves');
+    }
 }

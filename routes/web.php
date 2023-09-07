@@ -49,12 +49,9 @@ Route::group(['middleware'=>'admin_auth'], function(){
 
     Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 
-
     Route::get('admin/leaves', [LeavesController::class,'index']);
-
-
-
-
+    Route::get('admin/rejected-leaves', [LeavesController::class,'rejected']);
+    Route::get('admin/approved-leaves', [LeavesController::class,'approved']);
 
 
     Route::get('admin/logout', function () {
