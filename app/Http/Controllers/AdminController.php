@@ -82,7 +82,7 @@ class AdminController extends Controller
     public function dashboard()
     {
 
-        // Fetch user types and their counts
+        //fetch user and its types
         $userTypes = DB::table('employee_reg')->select('usertype', DB::raw('count(*) as user_count'))->groupBy('usertype')->get();
 
         return view('admin.dashboard', compact('userTypes',));
